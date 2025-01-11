@@ -90,16 +90,18 @@ app.get('/', async (req, res) => {
     }
 
     console.log("\nHere are 3 unique app ideas:");
-    ideas.forEach((idea, index) => console.log(`${index + 1}. ${idea}`));
+    ideas.forEach((idea, index) => console.log(` ${idea}`));
 
     const rankedIntents = rankIntents(ideas);
 
     console.log("\nRanked ideas based on priority:");
     rankedIntents.forEach((intent, index) => {
-        console.log(`${index + 1}. ${intent.idea}`);
+        const cleanedIdea = intent.idea.replace(/^\d+\.\s*/, "").replace(/\*+/g, "");
+        console.log(`${index + 1}. ${cleanedIdea}`); // Display proper index (1-based)
         console.log(`   Relevance: ${intent.relevance}, Impact: ${intent.impact}, Feasibility: ${intent.feasibility}`);
         console.log(`   Priority Score: ${intent.priorityScore.toFixed(2)}`);
     });
+    
 
     const userSelection = readline.question("Select an idea by typing its number or request an explanation (e.g., explain 1): ");
 
