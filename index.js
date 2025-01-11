@@ -103,7 +103,7 @@ app.get('/', async (req, res) => {
     });
     
 
-    const userSelection = readline.question("Select an idea by typing its number or request an explanation (e.g., explain 1): ");
+    const userSelection = readline.question("Select an idea by typing its number or request an explanation (e.g. 1): ");
 
     if (userSelection.startsWith("explain")) {
         const explainIndex = parseInt(userSelection.split(" ")[1]) - 1;
